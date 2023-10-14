@@ -11,11 +11,11 @@ function usePlanets() {
       const response = await fetch('https://swapi.dev/api/planets');
       const data = await response.json();
       const dataPlanets = data.results.map((planet: PlanetsType) => {
-        const { residents, ...rest } = planet; // "separando" a chave 'residentes' do objeto
+        const { residents, ...rest } = planet; // "separando" a chave 'residents' do objeto
         return rest;
       });
       setPlanets(dataPlanets);
-    }	catch(error) {
+    } catch (error) {
       console.log(error);
     } finally {
       setLoading(false);
