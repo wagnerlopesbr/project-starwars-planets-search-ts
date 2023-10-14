@@ -4,7 +4,7 @@ import { PlanetsType } from '../types';
 function usePlanets() {
   const [planets, setPlanets] = useState<PlanetsType[]>([]);
   const [loading, setLoading] = useState(false);
-  
+
   const fetchPlanets = async () => {
     try {
       setLoading(true);
@@ -13,8 +13,8 @@ function usePlanets() {
       const dataPlanets = data.results.map((planet: PlanetsType) => {
         const { residents, ...rest } = planet; // "separando" a chave 'residentes' do objeto
         return rest;
-    });
-    setPlanets(dataPlanets);
+      });
+      setPlanets(dataPlanets);
     }	catch (error) {
       console.log(error);
     } finally {
@@ -25,7 +25,7 @@ function usePlanets() {
   useEffect(() => {
     fetchPlanets();
   }, []);
-  
+
   return { planets, loading };
 }
 

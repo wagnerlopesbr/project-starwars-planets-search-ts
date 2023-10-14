@@ -1,4 +1,3 @@
-import { data } from 'cypress/types/jquery';
 import usePlanets from '../hooks/usePlanets';
 import { PlanetsType } from '../types';
 
@@ -37,7 +36,7 @@ function Table() {
         )
       )}
     </div>
-  )
+  );
 }
 
 export default Table;
