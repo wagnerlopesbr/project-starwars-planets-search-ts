@@ -9,7 +9,7 @@ function Table() {
     : [];
 
   return (
-    <div data-testid='table'>
+    <div data-testid="table">
       {loading ? (
         <p>Loading...</p>
       ) : (
