@@ -1,9 +1,12 @@
-import usePlanets from '../hooks/usePlanets';
+import { useContext } from 'react';
 import { PlanetsType } from '../types';
+import { PlanetsContext } from '../context/Provider';
 
 function Table() {
-  const { planets, loading } = usePlanets();
-  const headerKeys = planets.length > 0 ? Object.keys(planets[0]) : [];
+  const { filteredPlanets, loading } = useContext(PlanetsContext);
+  const headerKeys = filteredPlanets && filteredPlanets.length > 0
+    ? Object.keys(filteredPlanets[0])
+    : [];
 
   return (
     <div>
@@ -22,7 +25,7 @@ function Table() {
               </tr>
             </thead>
             <tbody>
-              {planets.map((planet: PlanetsType) => (
+              {filteredPlanets && filteredPlanets.map((planet: PlanetsType) => (
                 <tr key={ planet.name }>
                   {headerKeys.map((headerKey) => (
                     <td key={ headerKey }>
