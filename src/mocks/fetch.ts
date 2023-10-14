@@ -1,4 +1,4 @@
-import planetsData from "./planetsData";
+import planetsData from './planetsData';
 
 const mockFetch = () => ({
   status: 200,
