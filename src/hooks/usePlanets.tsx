@@ -15,7 +15,7 @@ function usePlanets() {
         return rest;
       });
       setPlanets(dataPlanets);
-    }	catch (error) {
+    }	catch(error) {
       console.log(error);
     } finally {
       setLoading(false);
