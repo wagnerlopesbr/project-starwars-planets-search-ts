@@ -18,15 +18,15 @@ function Filter() {
     'orbital_period',
     'diameter',
     'rotation_period',
-    'surface_water'
+    'surface_water',
   ];
 
   const comparisonFields = [
     'maior que',
     'menor que',
-    'igual a'
+    'igual a',
   ];
-  
+
   useEffect(() => {
     planetsFilter(inputFilter);
   }, [inputFilter, planetsFilter]);

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function useFilter<anyState>(initialState: anyState) {
+function useFilter<AnyState>(initialState: AnyState) {
   const [filter, setFilter] = useState(initialState);
 
   const handleFilter = (
