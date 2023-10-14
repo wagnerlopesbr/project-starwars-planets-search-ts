@@ -1,5 +1,5 @@
 import { data } from 'cypress/types/jquery';
-import usePlanets from '../hooks/usePlanets.tsx';
+import usePlanets from '../hooks/usePlanets';
 import { PlanetsType } from '../types';
 
 function Table() {
