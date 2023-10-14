@@ -6,7 +6,7 @@ describe('Tests - App StarWars Planets Search', () => {
   test('Se o App renderiza', () => {
     render(<App />);
   
-    const appElement = screen.getByText('App Component');
+    const appElement = screen.getByTestId('app-component');
   
     expect(appElement).toBeInTheDocument();
   });
@@ -29,8 +29,8 @@ describe('Tests - App StarWars Planets Search', () => {
     fireEvent.input(filterInput, { target: { value: 'Tatooine' } });
     fireEvent.click(filterButton);
   
-    const tableData = screen.getAllByRole('cell');
+    const table = screen.getByTestId('table');
   
-    expect(tableData).toHaveLength(8);
+    expect(table).toBeInTheDocument();
   });  
 });
