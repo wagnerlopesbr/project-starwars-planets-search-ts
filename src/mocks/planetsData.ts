@@ -1,6 +1,8 @@
-const planetsData = {
+const SWAPI_URL = 'https://swapi.dev/api/';
+
+const dataPlanets = {
   count: 60,
-  next: 'https://swapi.dev/api/planets/?page=2',
+  next: `${SWAPI_URL}planets/?page=2`,
   previous: null,
   results: [
     {
@@ -14,15 +16,15 @@ const planetsData = {
       surface_water: '1',
       population: '200000',
       films: [
-        'https://swapi.dev/api/films/1/',
-        'https://swapi.dev/api/films/3/',
-        'https://swapi.dev/api/films/4/',
-        'https://swapi.dev/api/films/5/',
-        'https://swapi.dev/api/films/6/',
+        `${SWAPI_URL}films/1/`,
+        `${SWAPI_URL}films/3/`,
+        `${SWAPI_URL}films/4/`,
+        `${SWAPI_URL}films/5/`,
+        `${SWAPI_URL}films/6/`,
       ],
       created: '2014-12-09T13:50:49.641000Z',
       edited: '2014-12-20T20:58:18.411000Z',
-      url: 'https://swapi.dev/api/planets/1/',
+      url: `${SWAPI_URL}planets/1/`,
     },
     {
       name: 'Alderaan',
@@ -35,12 +37,12 @@ const planetsData = {
       surface_water: '40',
       population: '2000000000',
       films: [
-        'https://swapi.dev/api/films/1/',
-        'https://swapi.dev/api/films/6/',
+        `${SWAPI_URL}films/1/`,
+        `${SWAPI_URL}films/6/`,
       ],
       created: '2014-12-10T11:35:48.479000Z',
       edited: '2014-12-20T20:58:18.420000Z',
-      url: 'https://swapi.dev/api/planets/2/',
+      url: `${SWAPI_URL}planets/2/`,
     },
     {
       name: 'Yavin IV',
@@ -52,10 +54,12 @@ const planetsData = {
       terrain: 'jungle, rainforests',
       surface_water: '8',
       population: '1000',
-      films: ['https://swapi.dev/api/films/1/'],
+      films: [
+        `${SWAPI_URL}films/1/`,
+      ],
       created: '2014-12-10T11:37:19.144000Z',
       edited: '2014-12-20T20:58:18.421000Z',
-      url: 'https://swapi.dev/api/planets/3/',
+      url: `${SWAPI_URL}planets/3/`,
     },
     {
       name: 'Hoth',
@@ -67,10 +71,12 @@ const planetsData = {
       terrain: 'tundra, ice caves, mountain ranges',
       surface_water: '100',
       population: 'unknown',
-      films: ['https://swapi.dev/api/films/2/'],
+      films: [
+        `${SWAPI_URL}films/2/`,
+      ],
       created: '2014-12-10T11:39:13.934000Z',
       edited: '2014-12-20T20:58:18.423000Z',
-      url: 'https://swapi.dev/api/planets/4/',
+      url: `${SWAPI_URL}planets/4/`,
     },
     {
       name: 'Dagobah',
@@ -83,13 +89,13 @@ const planetsData = {
       surface_water: '8',
       population: 'unknown',
       films: [
-        'https://swapi.dev/api/films/2/',
-        'https://swapi.dev/api/films/3/',
-        'https://swapi.dev/api/films/6/',
+        `${SWAPI_URL}films/2/`,
+        `${SWAPI_URL}films/3/`,
+        `${SWAPI_URL}films/6/`,
       ],
       created: '2014-12-10T11:42:22.590000Z',
       edited: '2014-12-20T20:58:18.425000Z',
-      url: 'https://swapi.dev/api/planets/5/',
+      url: `${SWAPI_URL}planets/5/`,
     },
     {
       name: 'Bespin',
@@ -101,10 +107,12 @@ const planetsData = {
       terrain: 'gas giant',
       surface_water: '0',
       population: '6000000',
-      films: ['https://swapi.dev/api/films/2/'],
+      films: [
+        `${SWAPI_URL}films/2/`,
+      ],
       created: '2014-12-10T11:43:55.240000Z',
       edited: '2014-12-20T20:58:18.427000Z',
-      url: 'https://swapi.dev/api/planets/6/',
+      url: `${SWAPI_URL}planets/6/`,
     },
     {
       name: 'Endor',
@@ -116,10 +124,12 @@ const planetsData = {
       terrain: 'forests, mountains, lakes',
       surface_water: '8',
       population: '30000000',
-      films: ['https://swapi.dev/api/films/3/'],
+      films: [
+        `${SWAPI_URL}films/3/`,
+      ],
       created: '2014-12-10T11:50:29.349000Z',
       edited: '2014-12-20T20:58:18.429000Z',
-      url: 'https://swapi.dev/api/planets/7/',
+      url: `${SWAPI_URL}planets/7/`,
     },
     {
       name: 'Naboo',
@@ -132,14 +142,14 @@ const planetsData = {
       surface_water: '12',
       population: '4500000000',
       films: [
-        'https://swapi.dev/api/films/3/',
-        'https://swapi.dev/api/films/4/',
-        'https://swapi.dev/api/films/5/',
-        'https://swapi.dev/api/films/6/',
+        `${SWAPI_URL}films/3/`,
+        `${SWAPI_URL}films/4/`,
+        `${SWAPI_URL}films/5/`,
+        `${SWAPI_URL}films/6/`,
       ],
       created: '2014-12-10T11:52:31.066000Z',
       edited: '2014-12-20T20:58:18.430000Z',
-      url: 'https://swapi.dev/api/planets/8/',
+      url: `${SWAPI_URL}planets/8/`,
     },
     {
       name: 'Coruscant',
@@ -152,14 +162,14 @@ const planetsData = {
       surface_water: 'unknown',
       population: '1000000000000',
       films: [
-        'https://swapi.dev/api/films/3/',
-        'https://swapi.dev/api/films/4/',
-        'https://swapi.dev/api/films/5/',
-        'https://swapi.dev/api/films/6/',
+        `${SWAPI_URL}films/3/`,
+        `${SWAPI_URL}films/4/`,
+        `${SWAPI_URL}films/5/`,
+        `${SWAPI_URL}films/6/`,
       ],
       created: '2014-12-10T11:54:13.921000Z',
       edited: '2014-12-20T20:58:18.432000Z',
-      url: 'https://swapi.dev/api/planets/9/',
+      url: `${SWAPI_URL}planets/9/`,
     },
     {
       name: 'Kamino',
@@ -171,12 +181,14 @@ const planetsData = {
       terrain: 'ocean',
       surface_water: '100',
       population: '1000000000',
-      films: ['https://swapi.dev/api/films/5/'],
+      films: [
+        `${SWAPI_URL}films/5/`,
+      ],
       created: '2014-12-10T12:45:06.577000Z',
       edited: '2014-12-20T20:58:18.434000Z',
-      url: 'https://swapi.dev/api/planets/10/',
+      url: `${SWAPI_URL}planets/10/`,
     },
   ],
 };
 
-export default planetsData;
+export default dataPlanets;
