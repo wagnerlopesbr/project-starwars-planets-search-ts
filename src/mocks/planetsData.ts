@@ -1,7 +1,7 @@
 const SWAPI_URL = 'https://swapi.dev/api/';
 const STANDARD = 'standard';
 
-const dataPlanets = {
+const planetsData = {
   count: 60,
   next: `${SWAPI_URL}planets/?page=2`,
   previous: null,
@@ -192,4 +192,4 @@ const dataPlanets = {
   ],
 };
 
-export default dataPlanets;
+export default planetsData;
