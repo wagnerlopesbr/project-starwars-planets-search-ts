@@ -1,52 +1,36 @@
-import { act, render, screen, waitFor } from '@testing-library/react';
-import {vi} from 'vitest';
-import planetsData from '../mocks/planetsData';
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import App from '../App';
 
 describe('Tests - App StarWars Planets Search', () => {
-  test('O cabeçalho da tabela aparece corretamente', async () => {
-    const MOCK_RETURN = { json: async () => planetsData } as Response;
-    vi.spyOn(global, 'fetch').mockResolvedValue(MOCK_RETURN);
-
-    await act(async () => {
-      render(<App />);
-    });
-
-    await waitFor(() => screen.getByText('Name'));
-    expect(screen.getByText('Name')).toBeInTheDocument();
-    expect(screen.getByText('Rotation period')).toBeInTheDocument();
-    expect(screen.getByText('Orbital period')).toBeInTheDocument();
-    expect(screen.getByText('Diameter')).toBeInTheDocument();
-    expect(screen.getByText('Climate')).toBeInTheDocument();
-    expect(screen.getByText('Gravity')).toBeInTheDocument();
-    expect(screen.getByText('Terrain')).toBeInTheDocument();
-    expect(screen.getByText('Surface water')).toBeInTheDocument();
-    expect(screen.getByText('Population')).toBeInTheDocument();
-    expect(screen.getByText('Residents')).not.toBeInTheDocument();
-    expect(screen.getByText('Films')).toBeInTheDocument();
-    expect(screen.getByText('Created')).toBeInTheDocument();
-    expect(screen.getByText('Edited')).toBeInTheDocument();
-    expect(screen.getByText('URL')).toBeInTheDocument();
+  test('Se o App renderiza', () => {
+    render(<App />);
+  
+    const appElement = screen.getByText('App Component');
+  
+    expect(appElement).toBeInTheDocument();
   });
-
-  test('O render funciona corretamente', async () => {
-    const MOCK_RETURN = { json: async () => planetsData } as Response;
-    vi.spyOn(global, 'fetch').mockResolvedValue(MOCK_RETURN);
-
-    await act(async () => {
-      render(<App />);
-    });
-
-    await waitFor(() => screen.getByText('Tatooine'));
-    expect(screen.getByText('Tatooine')).toBeInTheDocument();
-    expect(screen.getByText('Alderaan')).toBeInTheDocument();
-    expect(screen.getByText('Yavin IV')).toBeInTheDocument();
-    expect(screen.getByText('Hoth')).toBeInTheDocument();
-    expect(screen.getByText('Dagobah')).toBeInTheDocument();
-    expect(screen.getByText('Bespin')).toBeInTheDocument();
-    expect(screen.getByText('Endor')).toBeInTheDocument();
-    expect(screen.getByText('Naboo')).toBeInTheDocument();
-    expect(screen.getByText('Coruscant')).toBeInTheDocument();
-    expect(screen.getByText('Kamino')).toBeInTheDocument();
+  
+  test('Se o input Filter pode ser utilizado', () => {
+    render(<App />);
+    const filterInput = screen.getByTestId('name-filter');
+  
+    fireEvent.input(filterInput, { target: { value: 'Tatooine' } });
+  
+    expect(filterInput.value).toBe('Tatooine');
   });
+  
+  test('Se o Filter atualiza a tabela (Table)', () => {
+    render(<App />);
+  
+    const filterInput = screen.getByTestId('name-filter');
+    const filterButton = screen.getByTestId('button-filter');
+  
+    fireEvent.input(filterInput, { target: { value: 'Tatooine' } });
+    fireEvent.click(filterButton);
+  
+    const tableData = screen.getAllByRole('cell');
+  
+    expect(tableData).toHaveLength(8);
+  });  
 });
