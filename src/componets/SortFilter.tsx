@@ -18,7 +18,7 @@ function SortFilter() {
   );
 
   return (
-    <div style={ { display: 'flex', alignItems: 'start' } }>
+    <div>
       <select
         name="column"
         id="sort-filter"
