@@ -56,8 +56,6 @@ function Table() {
       </div>
       <div>
         <Filter />
-      </div>
-      <div>
         <SortFilter />
       </div>
       {loading ? (
