@@ -2,9 +2,10 @@ import { useContext, useState } from 'react';
 import { PlanetsType } from '../types';
 import { PlanetsContext } from '../context/Provider';
 import Filter from './Filter';
+import SortFilter from './SortFilter';
 
 function Table() {
-  const { planets, filters } = useContext(PlanetsContext);
+  const { planets, filters, sort } = useContext(PlanetsContext);
   const [search, setSearch] = useState('');
   const headerKeys = planets && planets.data.length > 0
     ? Object.keys(planets.data[0])
@@ -22,10 +23,26 @@ function Table() {
       if (f.comparison === 'igual a') {
         return Number(p[f.column]) === f.value;
       }
-      if (f.comparison === 'maior que') return Number(p[f.column]) > f.value;
-      if (f.comparison === 'menor que') return Number(p[f.column]) < f.value;
+      if (f.comparison === 'maior que') {
+        return Number(p[f.column]) > f.value;
+      }
+      if (f.comparison === 'menor que') {
+        return Number(p[f.column]) < f.value;
+      }
       return true;
-    }));
+    })).sort((a, b) => {
+      if (sort.sort === 'ASC') {
+        if (a[sort.column] === 'unknown') return 1;
+        if (b[sort.column] === 'unknown') return -1;
+        return Number(a[sort.column]) - Number(b[sort.column]);
+      }
+      if (sort.sort === 'DESC') {
+        if (a[sort.column] === 'unknown') return 1;
+        if (b[sort.column] === 'unknown') return -1;
+        return Number(b[sort.column]) - Number(a[sort.column]);
+      }
+      return 1;
+    });
 
   return (
     <div data-testid="table">
@@ -37,7 +54,10 @@ function Table() {
           data-testid="name-filter"
         />
       </div>
-      <Filter />
+      <div>
+        <Filter />
+        <SortFilter />
+      </div>
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -54,7 +74,7 @@ function Table() {
               && filterPlanets.map((planet: PlanetsType) => (
                 <tr key={ planet.name }>
                   {headerKeys.map((headerKey) => (
-                    <td key={ headerKey }>
+                    <td key={ headerKey } data-testid="planet-name">
                       {planet[headerKey as keyof PlanetsType]}
                     </td>
                   ))}

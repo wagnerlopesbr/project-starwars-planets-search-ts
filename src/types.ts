@@ -34,7 +34,8 @@ export type FilterOptionType = {
 export type ContextType = {
   planets: PlanetQueryType;
   filters: FilterType;
-  handleFilters: (filter: FilterOptionType) => void;
+  sort: SortType;
+  setSort: (sort: SortType) => void;
 };
 
 export type PlanetQueryType = {
@@ -47,4 +48,9 @@ export type FilterType = {
   addFilter: (filter: FilterOptionType) => void;
   removeFilter: (column: ColumnOptionsType) => void;
   clearFilters: () => void;
+};
+
+export type SortType = {
+  column: ColumnOptionsType,
+  sort: 'ASC' | 'DESC' | '',
 };

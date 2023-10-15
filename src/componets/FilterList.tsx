@@ -3,7 +3,7 @@ import { PlanetsContext } from '../context/Provider';
 
 function FilterList() {
   const { filters } = useContext(PlanetsContext);
-  const { filterList, removeFilter } = filters;
+  const { filterList, removeFilter, clearFilters } = filters;
 
   return (
     <div>
@@ -29,6 +29,13 @@ function FilterList() {
                 X
               </button>
             </p>
+            <button
+              type="button"
+              onClick={ clearFilters }
+              data-testid="button-remove-filters"
+            >
+              Remover todas filtragens
+            </button>
           </div>
         ))}
       </div>
