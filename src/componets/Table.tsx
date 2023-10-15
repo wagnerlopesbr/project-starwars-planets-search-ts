@@ -74,7 +74,7 @@ function Table() {
               && filterPlanets.map((planet: PlanetsType) => (
                 <tr key={ planet.name }>
                   {headerKeys.map((headerKey) => (
-                    <td key={ headerKey } data-testid="planet-name">
+                    <td key={ headerKey }>
                       {planet[headerKey as keyof PlanetsType]}
                     </td>
                   ))}
