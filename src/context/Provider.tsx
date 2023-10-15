@@ -1,28 +1,16 @@
-import React, { createContext } from 'react';
-import { PlanetsType, FilterOptionType } from '../types';
+import { createContext } from 'react';
 import usePlanets from '../hooks/usePlanets';
-
-export type ContextType = {
-  loading: boolean;
-  filteredPlanets: PlanetsType[];
-  planetsFilter: (search: string) => void;
-  selectFilter: ({ column, comparison, value }: FilterOptionType) => void;
-};
+import useFilter from '../hooks/useFilter';
+import { ContextType } from '../types';
 
 export const PlanetsContext = createContext({} as ContextType);
 
 function Provider({ children }: React.PropsWithChildren) {
-  const { loading, filteredPlanets, planetsFilter, selectFilter } = usePlanets();
-
-  const contextValue = {
-    loading,
-    filteredPlanets,
-    planetsFilter,
-    selectFilter,
-  };
+  const planets = usePlanets();
+  const filters = useFilter();
 
   return (
-    <PlanetsContext.Provider value={ contextValue }>
+    <PlanetsContext.Provider value={ { planets, filters } }>
       {children}
     </PlanetsContext.Provider>
   );

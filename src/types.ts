@@ -30,3 +30,21 @@ export type FilterOptionType = {
   comparison: ComparisonOptionsType,
   value: number;
 };
+
+export type ContextType = {
+  planets: PlanetQueryType;
+  filters: FilterType;
+  handleFilters: (filter: FilterOptionType) => void;
+};
+
+export type PlanetQueryType = {
+  data: PlanetsType[];
+  loading: boolean;
+};
+
+export type FilterType = {
+  filterList: FilterOptionType[];
+  addFilter: (filter: FilterOptionType) => void;
+  removeFilter: (column: ColumnOptionsType) => void;
+  clearFilters: () => void;
+};

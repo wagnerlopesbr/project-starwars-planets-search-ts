@@ -1,22 +1,19 @@
-import { useCallback, useEffect, useState } from 'react';
-import { PlanetsType, FilterOptionType } from '../types';
+import { useEffect, useState } from 'react';
+import { PlanetsType } from '../types';
 
 function usePlanets() {
-  const [planets, setPlanets] = useState<PlanetsType[]>([]);
   const [loading, setLoading] = useState(false);
-  const [filteredPlanets, setFilteredPlanets] = useState<PlanetsType[]>(planets);
+  const [data, setData] = useState<PlanetsType[]>([]);
 
   const fetchPlanets = async () => {
     try {
       setLoading(true);
       const response = await fetch('https://swapi.dev/api/planets');
-      const data = await response.json();
-      const dataPlanets = data.results.map((planet: PlanetsType) => {
-        const { residents, ...rest } = planet; // separando a chave 'residents' do objeto
+      const APIData = await response.json();
+      setData(APIData.results.map((planet: any) => {
+        const { residents, ...rest } = planet;
         return rest;
-      });
-      setPlanets(dataPlanets);
-      setFilteredPlanets(dataPlanets);
+      }));
     } catch (error) {
       console.log(error);
     } finally {
@@ -28,33 +25,7 @@ function usePlanets() {
     fetchPlanets();
   }, []);
 
-  const planetsFilter = useCallback((search: string) => {
-    if (search.length > 0) { // se a busca tiver conteúdo, filtra os planetas
-      setFilteredPlanets(planets.filter((planet) => planet.name.includes(search)));
-    } else { // se não, exibe a lista completa de planetas
-      setFilteredPlanets(planets);
-    }
-  }, [planets]);
-
-  const selectFilter = useCallback((
-    { column, comparison, value }: FilterOptionType,
-  ) => {
-    const filteredList = filteredPlanets.filter((planet) => {
-      switch (comparison) {
-        case 'maior que':
-          return Number(planet[column]) > value;
-        case 'menor que':
-          return Number(planet[column]) < value;
-        case 'igual a':
-          return Number(planet[column]) === value;
-        default:
-          return planet;
-      }
-    });
-    setFilteredPlanets(filteredList);
-  }, [filteredPlanets]);
-
-  return { filteredPlanets, loading, planetsFilter, selectFilter };
+  return { data, loading };
 }
 
 export default usePlanets;

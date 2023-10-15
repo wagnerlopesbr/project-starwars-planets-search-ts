@@ -1,16 +1,24 @@
 import { useState } from 'react';
+import { FilterOptionType, FilterType, ColumnOptionsType } from '../types';
 
-function useFilter<AnyState>(initialState: AnyState) {
-  const [filter, setFilter] = useState(initialState);
-
-  const handleFilter = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => {
-    const { name, value } = e.target;
-    setFilter({ ...filter, [name]: value });
+function useFilter(): FilterType {
+  const [filterList, setFilterList] = useState<FilterOptionType[]>([]);
+  const addFilter = (newFilter: FilterOptionType) => {
+    setFilterList([...filterList, newFilter]);
   };
 
-  return { filter, handleFilter };
+  const removeFilter = (column: ColumnOptionsType) => {
+    setFilterList(filterList.filter((f) => f.column !== column));
+  };
+
+  const clearFilters = () => setFilterList([]);
+
+  return {
+    filterList,
+    addFilter,
+    removeFilter,
+    clearFilters,
+  };
 }
 
 export default useFilter;
