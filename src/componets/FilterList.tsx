@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { PlanetsContext } from "../context/Provider";
+import { useContext } from 'react';
+import { PlanetsContext } from '../context/Provider';
 
 function FilterList() {
   const { filters } = useContext(PlanetsContext);
@@ -9,7 +9,7 @@ function FilterList() {
     <div>
       <div>
         {filterList.map((filter) => (
-          <div key={filter.column} data-testid="filter">
+          <div key={ filter.column } data-testid="filter">
             <p>
               {`
                   Coluna: ${filter.column} //
@@ -18,7 +18,7 @@ function FilterList() {
                 `}
               <button
                 type="button"
-                onClick={() => removeFilter(filter.column)}
+                onClick={ () => removeFilter(filter.column) }
                 data-testid="filter-button"
               >
                 X
@@ -29,7 +29,7 @@ function FilterList() {
       </div>
       <button
         type="button"
-        onClick={clearFilters}
+        onClick={ clearFilters }
         data-testid="button-remove-filters"
       >
         Remover todas filtragens
